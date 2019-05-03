@@ -684,7 +684,9 @@ var Footer = function (_React$Component) {
 
 			return React__default.createElement(
 				'div',
-				{ className: noImportant.css(classes.footer) },
+				{ className: noImportant.css(classes.footer), onClick: function onClick(e) {
+						return e.stopPropagation();
+					} },
 				React__default.createElement(
 					'div',
 					{ className: noImportant.css(classes.footerInfos) },
@@ -1508,6 +1510,14 @@ var Lightbox = function (_Component) {
 
 				var left = (_this2.containerWidth - width) / 2;
 				var top = (_this2.containerHeight - height - _this2.footerHeight) / 2;
+
+				var scaleX = data.initialZoom || 1;
+				var scaleY = data.initialZoom || 1;
+
+				if (data.fullHeight) {
+					scaleX = scaleY = _this2.containerHeight / height;
+				}
+
 				_this2.setState({
 					width: width,
 					height: height,
@@ -1516,8 +1526,8 @@ var Lightbox = function (_Component) {
 					imageWidth: imgWidth,
 					imageHeight: imgHeight,
 					rotate: data.initialRotation || 0,
-					scaleX: data.initialZoom || 1,
-					scaleY: data.initialZoom || 1,
+					scaleX: scaleX,
+					scaleY: scaleY,
 					imageLoaded: true
 				});
 			};
@@ -1654,7 +1664,7 @@ var Lightbox = function (_Component) {
 					null,
 					React__default.createElement(
 						'div',
-						{ className: aphrodite.css(this.classes.content), style: { marginBottom: offsetThumbnails, maxWidth: width } },
+						{ className: aphrodite.css(this.classes.content), style: { marginBottom: offsetThumbnails, maxWidth: width }, onClick: this.props.onClose },
 						imageLoaded && this.renderHeader(),
 						this.renderImages(),
 						this.renderSpinner(),

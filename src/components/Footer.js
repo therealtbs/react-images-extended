@@ -98,7 +98,7 @@ class Footer extends React.Component {
 		}
 
 		return (
-			<div className={css(classes.footer)}>
+			<div className={css(classes.footer)} onClick={(e) => e.stopPropagation()}>
 				<div className={css(classes.footerInfos)}>
 					{caption ? (
 						<figcaption className={css(classes.footerCaption)}>

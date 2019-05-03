@@ -253,6 +253,14 @@ class Lightbox extends Component {
 			const [width, height] = this.getImgWidthHeight(imgWidth, imgHeight);
 			let left = (this.containerWidth - width) / 2;
 			let top = (this.containerHeight - height - this.footerHeight) / 2;
+
+			let scaleX = data.initialZoom || 1;
+			let scaleY = data.initialZoom || 1;
+
+			if (data.fullHeight) {
+				scaleX = scaleY = this.containerHeight / height;
+			}
+
 			this.setState({
 				width,
 				height,
@@ -261,8 +269,8 @@ class Lightbox extends Component {
 				imageWidth: imgWidth,
 				imageHeight: imgHeight,
 				rotate: data.initialRotation || 0,
-				scaleX: data.initialZoom || 1,
-				scaleY: data.initialZoom || 1,
+				scaleX,
+				scaleY,
 				imageLoaded: true,
 			});
 		};
@@ -376,7 +384,7 @@ class Lightbox extends Component {
 				onTouchEnd={backdropClosesModal && this.closeBackdrop}
 			>
 				<div>
-					<div className={css(this.classes.content)} style={{ marginBottom: offsetThumbnails, maxWidth: width }}>
+					<div className={css(this.classes.content)} style={{ marginBottom: offsetThumbnails, maxWidth: width }} onClick={this.props.onClose}>
 						{imageLoaded && this.renderHeader()}
 						{this.renderImages()}
 						{this.renderSpinner()}
