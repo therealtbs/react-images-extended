@@ -21,7 +21,6 @@ function ToolbarAction ({
 			type="button"
 			className={css(classes.actionButton)}
 			onClick={onClick}
-			onTouchEnd={onClick}
 			{...props}
 		>
 			<Icon fill={!!theme.toolbarAction && theme.toolbarAction.fill || defaults.toolbarAction.fill} type={icon} />
