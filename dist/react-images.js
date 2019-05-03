@@ -542,8 +542,7 @@ function ToolbarAction(_ref, _ref2) {
 		_extends({
 			type: 'button',
 			className: noImportant.css(classes.actionButton),
-			onClick: onClick,
-			onTouchEnd: onClick
+			onClick: onClick
 		}, props),
 		React__default.createElement(Icon, { fill: !!theme$$1.toolbarAction && theme$$1.toolbarAction.fill || theme.toolbarAction.fill, type: icon })
 	);
